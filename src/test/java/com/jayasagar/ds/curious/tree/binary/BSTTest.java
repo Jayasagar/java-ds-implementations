@@ -25,6 +25,17 @@ public class BSTTest {
 	}
 	
 	@Test
+	public void bst_level_test() {
+		Assert.assertEquals(2, bst.level(10));
+		Assert.assertEquals(2, bst.level(3));
+	}
+	
+	@Test
+	public void bst_height_test() {
+		Assert.assertEquals(4, bst.height());
+	}
+	
+	@Test
 	public void bst_search_test_should_exist() {
 		// Act and Assert
 		org.junit.Assert.assertTrue(bst.find(9));

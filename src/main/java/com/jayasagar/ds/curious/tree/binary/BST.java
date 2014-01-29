@@ -29,6 +29,85 @@ public class BST {
 	// Search -> Done
 	// Traversals -> Separate class ? -> Done
 	
+	private class LevelStatus {
+		private boolean found;
+		private int level =-1;
+	}
+	
+	public int level(int data) {
+		if (root == null) {
+			return -1;
+		}
+		
+		if (root.getData() == data) {
+			return 0;
+		}
+		
+		if (root.getLeft() == null && root.getRight() == null) {
+			return -1;
+		}
+		
+		
+		LevelStatus levelStatus = new LevelStatus();
+		
+		level(root, data, 0, levelStatus);
+		
+		return levelStatus.found ? levelStatus.level : -1; 
+	}
+	
+	private void level(Node node, int data, int level, LevelStatus levelStatus) {
+		Node left = node.getLeft();
+		Node right = node.getRight();
+		
+		if (node.getData() == data) {
+			levelStatus.found = true;
+			levelStatus.level = level;
+			return ;
+		}
+		
+		if (left != null) {
+			level(left, data, level+1, levelStatus);
+		}
+		
+		// Not found left side, then only scan right side
+		if (right != null && !levelStatus.found) {
+			level(right, data, level+1, levelStatus);
+		}
+	}
+
+	/**
+	 * calculate height without maintaining instance variable height  
+	 * @return
+	 */
+	public int height() {
+		if (root == null) {
+			return 0;
+		}
+		if (root.getLeft() == null && root.getRight() == null) {
+			return 1;
+		}
+		
+		return height(root, 1);
+	}
+	
+	private int height(Node node, int height) {
+		Node left = node.getLeft();
+		Node right = node.getRight();
+		
+		int leftHeight = height;
+		int rightHeight = height;
+		
+		if (left != null) {
+			leftHeight = height(left, height +1);
+		}
+		
+		if (right != null) {
+			rightHeight = height(right, height +1);
+		}
+		
+		return Math.max(leftHeight, rightHeight);
+	}
+
 	/**
 	 * Find the list of elements at level kth in BST
 	 */
