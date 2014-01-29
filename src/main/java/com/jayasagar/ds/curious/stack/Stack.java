@@ -1,6 +1,10 @@
 package com.jayasagar.ds.curious.stack;
 
 
+/**
+ * Interesting questions :
+ * 1. Show how to implement a queue using two stacks. Analyze the running time of the queue operations
+ */
 public class Stack {
 
 	private Node root;
@@ -36,8 +40,9 @@ public class Stack {
 		if (!isEmpty()) {
 			if (size == 1) {
 				size--;
+				Node t = root;
 				root = null;
-				return root;
+				return t;
 			} else {
 				Node next = root.getNext();
 				size--;

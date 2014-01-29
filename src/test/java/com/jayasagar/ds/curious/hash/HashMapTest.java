@@ -25,6 +25,18 @@ public class HashMapTest {
 		Assert.assertEquals(2, hashMap.getSize());
 	}
 	
+	@Test
+	public void get_test() {
+		HashMap hashMap = new HashMap(5);
+		
+		hashMap.put(new Customer(2), "Gold");
+		Customer silver = new Customer(3);
+		hashMap.put(silver, "Silver");
+		
+		Assert.assertEquals("Silver", hashMap.get(silver));
+		Assert.assertEquals("Silver", hashMap.get(new Customer(3)));
+	}
+	
 	private class Customer {
 		private int id;
 		
