@@ -1,4 +1,4 @@
-package com.jayasagar.ds.curious;
+package com.jayasagar.ds.curious.list;
 
 public class SLL {
 	
@@ -11,6 +11,48 @@ public class SLL {
 	// Search
 	// Display
 	// Kth element from last
+
+	public Node search(int data) {
+		Node t = root;
+		
+		while (t != null) {
+			int nodeData = t.getData();
+			if (nodeData == data) {
+				return t;
+			}
+			t = t.getNext();
+		}
+		
+		return null;
+	}
+	
+	public boolean remove(int data) {
+		
+		if (root == null) {
+			return false;
+		}
+		if (root.getData() == data) {
+			root = tail = null;
+			return true;
+		}
+		
+		Node prev = root;
+		Node t = root.getNext();
+		
+		while (t != null) {
+			int nodeData = t.getData();
+			if (nodeData == data) {
+				// cut the link 
+				prev.setNext(t.getNext());
+				return true;
+			}
+			prev = t;
+			t = t.getNext();
+		}
+		
+		return false;
+	}
+	
 	// // Not yet working , TODO - Fix it , idea is clear but need to write test cases and fix it later.
 	// What if k is greater ? size of list ???
 	public Node getKthNodeFromLast(int k) {

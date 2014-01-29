@@ -23,7 +23,7 @@ public class Stack {
 		}
 	}
 		
-	// Push
+	// Push - o(1)
 	public void push(int data) {
 		Node newNode = new Node(data);
 		size++;
@@ -38,19 +38,10 @@ public class Stack {
 	// Pop
 	public Node pop() {
 		if (!isEmpty()) {
-			if (size == 1) {
-				size--;
-				Node t = root;
-				root = null;
-				return t;
-			} else {
-				Node next = root.getNext();
-				size--;
-				Node r = root;
-				root = next;
-				
-				return r;
-			}
+			Node t = root;
+			size--;
+			root = root.getNext();
+			return t;
 		}
 		
 		return null;
